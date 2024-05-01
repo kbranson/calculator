@@ -36,5 +36,15 @@ pipeline {
                 }
             }
         }
+        stage ("Package") {
+            steps {
+                sh "./gradlew build"
+            }
+        }
+        stage ("Docker Build") {
+            steps {
+                sh "docker build -t mkbranson/calculator ."
+            }
+        }
     }
 }
